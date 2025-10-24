@@ -77,7 +77,9 @@ target/
 
 # Jupyter Notebook
 .ipynb_checkpoints
-
+print("Helloworld
+https://github.com/HaidarH726/b1-programming.git
+")
 # IPython
 profile_default/
 ipython_config.py
@@ -179,3 +181,6 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+https://github.com/HaidarH726/b1-programming.git
+
+
