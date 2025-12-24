@@ -1,4 +1,3 @@
-numbers = [1,10]
-for number in numbers
-if number % 2 !=0:
-    print(numbers)
+for numbers in range(1,11):
+    if numbers % 2 == 0:
+        print(numbers)
