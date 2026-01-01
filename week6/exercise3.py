@@ -1,32 +1,35 @@
 expense_records = []
 category_totals = {}
-unique_categories = {}
-
-def personal_expense_count():
-    print = input("Enter expense category :")
-    print = input("Enter expense amount:")
-    print  = input("Enter expense date :")
+unique_categories = set()
 
 
-personal_expense_count()
-personal_expense_count()
-personal_expense_count()
-personal_expense_count()
-personal_expense_count()
+number_of_expenses = 5
+
+for i in range(number_of_expenses):
+    print(f"\nEnter expense {i + 1}")
+    category = input("Enter category: ")
+    amount = float(input("Enter amount: "))
+
+    date = input("Enter date (YYYY-MM-DD): ")
+
+    expense = (category, amount, date)
+    expense_records.append(expense)
+
+for category, amount, date in expense_records:
+    unique_categories.add(category)
+    category_totals[category] = category_totals.get(category, 0) + amount
 
 
 
-for expense_record in expense_records:
-    if expense_record not in category_totals:
-        category_totals[expense_record] = 0
-        unique_categories[expense_record] = 0
+print("\n=== PERSONAL EXPENSE TRACKER ===")
+for expense in expense_records:
+    print(expense)
 
-    else:
-        category_totals[expense_record] += 1
-        unique_categories[expense_record] += 1
+print("\n=== UNIQUE CATEGORIES SPENT ON ===")
+print(unique_categories)
+print(f"Total unique categories: {len(unique_categories)}")
 
-
-print( "=== PERSONAL EXPENSE TRACKER ===")
-print(category_totals)
-print(expense_records)
+print("\n=== SPENDING BY CATEGORY ===")
+for category, total in category_totals.items():
+    print(f"{category}: ${total:.2f}")
 
