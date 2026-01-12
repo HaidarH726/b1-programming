@@ -1,8 +1,80 @@
-from datetime import datetime, timedelta
+class Book:
+    def __init__(self, title, author, isbn):
+        self.title = title
+        self.author = author
+        self.isbn = isbn
 
-today = datetime.now()
-print(f"today : {today.strftime('%d/%m/%Y')}")
+    def display_info(self):
+        return f"Title: {self.title}, Author: {self.author}, ISBN: {self.isbn}"
 
-meeting_time = today + timedelta(hours=2 , minutes=30)
-print(f"Meeting in 2.5 hours: {meeting_time.strftime('%I:%M %p')}")
+
+class Library:
+    def __init__(self, name):
+        self.name = name
+        self.books = []
+
+    def add_book(self, book):
+        self.books.append(book)
+        return f"Book added: {book.display_info()}"
+
+    def remove_book(self, title):
+        for book in self.books:
+            if book.title.lower() == title.lower():
+                self.books.remove(book)
+                return f"Removed: {book.display_info()}"
+        return f"Book '{title}' not found"
+
+    def list_books(self):
+        if not self.books:
+            return f"{self.name} has no books"
+
+        result = f"\n=== Books in {self.name} ===\n"
+        for index, book in enumerate(self.books, 1):
+            result += f"{index}. {book.display_info()}\n"
+        return result
+
+    def search_by_title(self, search_term):
+        found = [
+            book for book in self.books
+            if search_term.lower() in book.title.lower()
+        ]
+
+        if found:
+            result = "\nFound books:\n"
+            for book in found:
+                result += f"- {book.display_info()}\n"
+            return result
+
+        return f"No books found matching '{search_term}'"
+
+
+# ===== TESTING =====
+library = Library("City Library")
+
+book1 = Book("Python Crash Course", "Eric Matthes", "978-1593279288")
+book2 = Book("Clean Code", "Robert Martin", "978-0132350884")
+book3 = Book("The Pragmatic Programmer", "Hunt & Thomas", "978-0201616224")
+
+print(library.add_book(book1))
+print(library.add_book(book2))
+print(library.add_book(book3))
+
+print(library.list_books())
+
+print(library.search_by_title("Python"))
+
+print(library.remove_book("Clean Code"))
+
+print(library.list_books())
+
+
+
+
+
+
+
+
+
+
+
 
